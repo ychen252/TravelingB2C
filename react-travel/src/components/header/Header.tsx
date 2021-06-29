@@ -3,9 +3,16 @@ import styles from "./Header.module.css";
 import { Layout, Typography, Input, Menu, Button, Dropdown } from "antd";
 import { GlobalOutlined, MoneyCollectFilled } from "@ant-design/icons"
 import logo from "../../assets/logo.jpg";
+import {useHistory,useLocation,useParams,useRouteMatch, Link} from "react-router-dom";
+import store from "../../redux/store";
+
 
 
 export const Header : React.FC = () => {
+  const history = useHistory();
+  const location = useLocation();
+  const params = useParams();
+  const match = useRouteMatch();
   return(
     <div className={styles['App-header']}>
         <div className={styles['top-header']}>
@@ -23,15 +30,15 @@ export const Header : React.FC = () => {
               Language
             </Dropdown.Button>
             <Button.Group className={styles['button-group']}>
-              <Button>Sign in</Button>
-              <Button>Register</Button>
+              <Button> <Link to="/signIn"> Sign in  </Link></Button>
+              <Button> <Link to="/register"> Register </Link></Button>
             </Button.Group>
           </div>
         </div>
 
         <Layout.Header className={styles['main-header']}>
-          <img src={logo} className={styles['App-logo']} alt="Logo Here" />
-          <Typography.Title level={3} className={styles['title']}>
+          <img src={logo} className={styles['App-logo']} alt="Logo Here" onClick={()=>goHome(history)}/>
+          <Typography.Title level={3} className={styles['title']} onClick={()=>goHome(history)}>
             AaronC. Travelling
           </Typography.Title>
           <Input.Search placeholder="Where are you going?" className={styles['search-input']} />
@@ -50,8 +57,8 @@ export const Header : React.FC = () => {
       </div>
 
   )
+}
 
-
-
-
+function goHome(history:any){
+  history.push("/");
 }
