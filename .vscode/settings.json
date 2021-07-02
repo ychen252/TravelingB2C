@@ -1,0 +1,4 @@
+{
+    "typescript.tsdk": "./react-travel/node_modules/typescript/lib",
+    "typescript.enablePromptUseWorkspaceTsdk": true
+}
