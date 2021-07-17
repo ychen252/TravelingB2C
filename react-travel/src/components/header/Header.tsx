@@ -75,7 +75,7 @@ export const Header: React.FC = (props) => {
         <Input.Search placeholder="Where are you going?" className={styles['search-input']} />
       </Layout.Header>
       <Menu mode={"horizontal"} className={styles['main-menu']}>
-        <Menu.Item key={1}> {t("header.home_page")} </Menu.Item>
+        <Menu.Item key={1} onClick={() => goHome(history)}> {t("header.home_page")} </Menu.Item>
         <Menu.Item key={2}> {t("header.weekend")}  </Menu.Item>
         <Menu.Item key={3}> {t("header.group")} </Menu.Item>
         <Menu.Item key={4}> {t("header.backpack")} </Menu.Item>
