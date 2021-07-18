@@ -56,10 +56,10 @@ export const ProductIntro: React.FC<PropsType> = (
     },
     {
         key: 1,
-        title: "Price",
+        title: "Price:",
         description: (
             <>
-                ¥{" "}
+                ${" "}
                 <Typography.Text type="danger" strong>
                     {price}
                 </Typography.Text>
@@ -68,12 +68,12 @@ export const ProductIntro: React.FC<PropsType> = (
     },
     {
         key: 2,
-        title: "Discount",
+        title: "Book NOW:",
         description: discount ? (
             <>
-                ¥ <Typography.Text delete>{price}</Typography.Text>{" "}
+                $ <Typography.Text delete>{price}</Typography.Text>{" "}
                 <Typography.Text type="danger" strong>
-                    ¥ {discount}
+                    $ {discount}
                 </Typography.Text>
             </>
         ) : (
@@ -82,7 +82,7 @@ export const ProductIntro: React.FC<PropsType> = (
     },
     {
         key: 2,
-        title: "Rating",
+        title: "Rating:",
         description: (
             <>
                 <Rate allowHalf defaultValue={+rating} />

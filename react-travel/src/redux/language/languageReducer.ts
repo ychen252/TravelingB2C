@@ -11,7 +11,7 @@ const defaultState : LanguageState = {
     languageList : [{name:"English" , code:"en"}, {name:"简体中文", code:"zh"}]
 }
 
-export default (state : LanguageState = defaultState ,action:LanguageActionTypes)=>{
+export const languageReducer =  (state : LanguageState = defaultState ,action:LanguageActionTypes)=>{
     switch(action.type){
         case CHANGE_LANGUAGE:
             i18n.changeLanguage(action.payload);

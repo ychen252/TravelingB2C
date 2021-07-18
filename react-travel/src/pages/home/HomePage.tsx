@@ -7,7 +7,6 @@ import sideImage2 from "../../assets/images/sider_2019_02-04.png";
 import sideImage3 from "../../assets/images/sider_2019_02-04-2.png";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import axios from "axios";
 import {RootState} from "../../redux/store";
 import {getDataActionCreator} from "../../redux/recommend/recommendActions"
 // import { ThunkDispatch } from "redux-thunk";

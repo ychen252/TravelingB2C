@@ -13,7 +13,7 @@ const defaultState: RecommendState = {
     loading : true
 }
 
-export default (state= defaultState,action:RecommendAction):RecommendState => {
+export const recommendReducer= (state= defaultState,action:RecommendAction):RecommendState => {
     switch(action.type){
         case FETCH_RECOMMEND_START:
             return {...state, loading:true};
