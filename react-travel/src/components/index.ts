@@ -6,3 +6,5 @@ export * from "./productCollection";
 export * from "./sponsors";
 export * from "./productIntro";
 export * from "./productComments";
+export * from "./filter";
+export * from './productList'

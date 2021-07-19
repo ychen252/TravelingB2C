@@ -72,25 +72,26 @@ export const Header: React.FC = (props) => {
         <Typography.Title level={3} className={styles['title']} onClick={() => goHome(history)}>
           {t("header.title")}
         </Typography.Title>
-        <Input.Search placeholder="Where are you going?" className={styles['search-input']} />
+        <Input.Search placeholder="Where are you going?" className={styles['search-input']}
+                      onSearch={(keyword)=>{
+                        if(keyword) search(history,keyword);
+                        else search(history,"all")}
+                      }/>
       </Layout.Header>
       <Menu mode={"horizontal"} className={styles['main-menu']}>
         <Menu.Item key={1} onClick={() => goHome(history)}> {t("header.home_page")} </Menu.Item>
-        <Menu.Item key={2}> {t("header.weekend")}  </Menu.Item>
-        <Menu.Item key={3}> {t("header.group")} </Menu.Item>
-        <Menu.Item key={4}> {t("header.backpack")} </Menu.Item>
-        <Menu.Item key={5}> {t("header.private")} </Menu.Item>
-        <Menu.Item key={6}> {t("header.cruise")} </Menu.Item>
-        <Menu.Item key={7}> {t("header.hotel")}</Menu.Item>
-        <Menu.Item key={8}> {t("header.local")} </Menu.Item>
-        <Menu.Item key={9}> {t("header.theme")}</Menu.Item>
-        <Menu.Item key={10}> {t("header.custom")} </Menu.Item>
-        <Menu.Item key={11}> {t("header.study")}</Menu.Item>
-        <Menu.Item key={12}> {t("header.visa")} </Menu.Item>
-        <Menu.Item key={13}> {t("header.enterprise")}</Menu.Item>
-        <Menu.Item key={14}> {t("header.high_end")}</Menu.Item>
-        <Menu.Item key={15}> {t("header.outdoor")} </Menu.Item>
-        <Menu.Item key={16}> {t("header.insurance")}</Menu.Item>
+        <Menu.Item key={2} onClick={() => search(history,t("header.weekend"))}> {t("header.weekend")}  </Menu.Item>
+        <Menu.Item key={3} onClick={() => search(history,t("header.group"))}> {t("header.group")} </Menu.Item>
+        <Menu.Item key={4} onClick={() => search(history,t("header.backpack"))}> {t("header.backpack")} </Menu.Item>
+        <Menu.Item key={5} onClick={() => search(history,t("header.private"))}> {t("header.private")} </Menu.Item>
+        <Menu.Item key={6} onClick={() => search(history,t("header.cruise"))}> {t("header.cruise")} </Menu.Item>
+        <Menu.Item key={7} onClick={() => search(history,t("header.hotel"))}> {t("header.hotel")}</Menu.Item>
+        <Menu.Item key={8} onClick={() => search(history,t("header.local"))}> {t("header.local")} </Menu.Item>
+        <Menu.Item key={9} onClick={() => search(history,t("header.theme"))}> {t("header.theme")}</Menu.Item>
+        <Menu.Item key={10} onClick={() => search(history,t("header.custom"))}> {t("header.custom")} </Menu.Item>
+        <Menu.Item key={11} onClick={() => search(history,t("header.study"))}> {t("header.study")}</Menu.Item>
+        <Menu.Item key={12} onClick={() => search(history,t("header.visa"))}> {t("header.visa")} </Menu.Item>
+        <Menu.Item key={13} onClick={() => search(history,t("header.high_end"))}> {t("header.high_end")}</Menu.Item>
       </Menu>
     </div>
 
@@ -100,6 +101,10 @@ export const Header: React.FC = (props) => {
 
 function goHome(history: any) {
   history.push("/");
+}
+
+function search(history:any, keyword:any){
+  history.push(`/search/${keyword}`);
 }
 
 // export const Header = connect(mapStateToProps,mapDispatchToProps)(HeaderComp);
