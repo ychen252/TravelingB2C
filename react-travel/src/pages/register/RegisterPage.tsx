@@ -1,7 +1,16 @@
 import React from "react";
+import { UserLayout } from "../../layout";
+import { RegisterForm } from ".";
 
 export const RegisterPage : React.FC = () =>{
     return(
-        <h1> REGISTER Page Here</h1>
+        <UserLayout>
+            <strong style={{
+                color:"red"}}
+            >
+                Password is NOT encrypted, please don't use your real-world password
+            </strong>
+            <RegisterForm/>
+        </UserLayout>
     )
 }

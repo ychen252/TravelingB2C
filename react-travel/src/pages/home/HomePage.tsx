@@ -7,8 +7,9 @@ import sideImage2 from "../../assets/images/sider_2019_02-04.png";
 import sideImage3 from "../../assets/images/sider_2019_02-04-2.png";
 import { withTranslation, WithTranslation } from "react-i18next";
 import { connect } from "react-redux";
-import {RootState} from "../../redux/store";
-import {getDataActionCreator} from "../../redux/recommend/recommendActions"
+import { RootState } from "../../redux/store";
+import { getDataActionCreator } from "../../redux/recommend/recommendActions"
+import { MainLayout } from "../../layout";
 // import { ThunkDispatch } from "redux-thunk";
 
 interface State {
@@ -17,24 +18,24 @@ interface State {
 	productList: any[]
 }
 
-const mapStateToProps = (state : RootState) => {
+const mapStateToProps = (state: RootState) => {
 	return {
 		loading: state.recommend.loading,
 		error: state.recommend.error,
-		productList : state.recommend.productList
+		productList: state.recommend.productList
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		getData: () => {
-		  dispatch(getDataActionCreator());
+			dispatch(getDataActionCreator());
 		}
-	  };
+	};
 }
 
-type PropsType = WithTranslation & ReturnType<typeof mapStateToProps> 
-							& ReturnType<typeof mapDispatchToProps>;
+type PropsType = WithTranslation & ReturnType<typeof mapStateToProps>
+	& ReturnType<typeof mapDispatchToProps>;
 
 class HomePageComp extends React.Component<PropsType> {
 	componentDidMount() {
@@ -51,8 +52,7 @@ class HomePageComp extends React.Component<PropsType> {
 		}
 		else {
 			return (
-				<>
-					<Header />
+				<MainLayout>
 					<div className={styles["page-content"]}>
 						<Row style={{ marginTop: 20 }}>
 							<Col span={6}>
@@ -89,11 +89,10 @@ class HomePageComp extends React.Component<PropsType> {
 						/>
 					</div>
 					<Sponsors />
-					<Footer />
-				</>
+				</MainLayout>
 			)
 		}
 	}
 }
 
-export const HomePage = connect(mapStateToProps,mapDispatchToProps)(withTranslation()(HomePageComp));
+export const HomePage = connect(mapStateToProps, mapDispatchToProps)(withTranslation()(HomePageComp));

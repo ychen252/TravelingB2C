@@ -6,9 +6,10 @@ import styles from "./DetailPage.module.css";
 import { Header, Footer, ProductIntro, ProductComments } from "../../components";
 import { DatePicker, Space } from 'antd';
 import { mockCommentsData } from "./mockComments";
-import {productDetailSlice, getProductDetail} from "../../redux/productDetail/slice";
-import {useSelector} from "../../redux/hooks";
+import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
+import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
+import { MainLayout } from "../../layout";
 
 
 const { RangePicker } = DatePicker;
@@ -21,9 +22,9 @@ export const DetailPage: React.FC<RouteComponentProps<MatchProps>> = (props) => 
     // const [loading, setLoading] = useState<boolean>(true);
     // const [product, setProduct] = useState<any>(null);
     // const [error, setError] = useState<string | null>(null);
-    const loading = useSelector((state)=>state.productDetail.loading);
-    const product = useSelector((state)=>state.productDetail.data);
-    const error = useSelector((state)=>state.productDetail.error);
+    const loading = useSelector((state) => state.productDetail.loading);
+    const product = useSelector((state) => state.productDetail.data);
+    const error = useSelector((state) => state.productDetail.error);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,8 +38,7 @@ export const DetailPage: React.FC<RouteComponentProps<MatchProps>> = (props) => 
         return <div>This API has some errors, {error}</div>
     }
     return (
-        <>
-            <Header />
+        <MainLayout>
             <div className={styles["page-content"]}>
                 <div className={styles["product-intro-container"]}>
                     <Row>
@@ -110,7 +110,6 @@ export const DetailPage: React.FC<RouteComponentProps<MatchProps>> = (props) => 
                     <ProductComments data={mockCommentsData} />
                 </div>
             </div>
-            <Footer />
-        </>
+        </MainLayout>
     )
 }

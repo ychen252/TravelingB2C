@@ -1,7 +1,11 @@
 import React from "react";
+import { UserLayout } from "../../layout";
+import {SignInForm} from "./SignInForm";
 
 export const SignInPage : React.FC = () =>{
     return(
-        <h1> SignIn Page Here</h1>
+        <UserLayout>
+            <SignInForm/>
+        </UserLayout>
     )
 }

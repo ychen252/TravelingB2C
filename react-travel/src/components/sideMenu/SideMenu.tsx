@@ -28,6 +28,7 @@ export const SideMenu: React.FC = () => {
                     ))}
                 </Menu.SubMenu>
             )}
+            <div style={{margin:15, color:"red",textDecoration:"underline"}}> {"Side Menu is for DISPLAY ONLY"} </div>
         </Menu>
     )
 }
