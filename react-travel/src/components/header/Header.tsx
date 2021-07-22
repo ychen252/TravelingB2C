@@ -21,11 +21,15 @@ export const Header: React.FC = (props) => {
   const language = useSelector((state) => state.language.language);
   const languageList = useSelector((state) => state.language.languageList);
   const jwt = useSelector((state) => state.user.token);
+  const shoppingCartItems = useSelector(state=>state.shoppingCart.items);
+  const shoppingCartLoading = useSelector(state=>state.shoppingCart.loading);
   const dispatch = useDispatch();
+
   const menuClickHandler = (e) => {
     dispatch(changeLanguageActionCreator(e.key));
   }
   const [username, setUsername] = useState("");
+
   useEffect(() => {
     if (jwt) {
       const token = jwt_decode<JwtPayload>(jwt);
@@ -69,7 +73,12 @@ export const Header: React.FC = (props) => {
               <Typography.Text strong style={{marginLeft:10,marginRight:10}}>
                 {username}
               </Typography.Text>
-              <Button><ShoppingCartOutlined />{t("header.shoppingCart")}</Button>
+              <Button loading={ shoppingCartLoading} 
+                      onClick={()=>{history.push("/shoppingCart")}}>
+                <ShoppingCartOutlined />
+                {t("header.shoppingCart")}
+                ({shoppingCartItems.length})
+              </Button>
               <Button onClick={onLogOut}>{t("header.signOut")}</Button>
             </Button.Group>
             :

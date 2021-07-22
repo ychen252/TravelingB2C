@@ -1,8 +1,10 @@
 import { createStore, applyMiddleware} from "redux";
 import {languageReducer} from "./language/languageReducer";
 import {recommendReducer} from "./recommend/recommendReducer";
-import { productDetailSlice} from "./productDetail/slice";
+import {productDetailSlice} from "./productDetail/slice";
 import {productSearchSlice} from "./productSearch/slice";
+import { shoppingCartSlice } from "./shoppingCart/slice";
+import { orderSlice } from "./order/slice";
 import {userSlice} from "./user/slice"
 import {actionLog} from "./middleware/actionLog";
 import thunk from "redux-thunk";
@@ -22,7 +24,9 @@ const rootReducer = combineReducers({
     recommend : recommendReducer,
     productDetail: productDetailSlice.reducer,
     productSearch: productSearchSlice.reducer,
-    user: userSlice.reducer
+    user: userSlice.reducer,
+    shoppingCart: shoppingCartSlice.reducer,
+    order: orderSlice.reducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

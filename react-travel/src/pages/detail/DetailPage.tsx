@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { RouteComponentProps, useParams } from "react-router-dom";
-import axios from "axios";
-import { Spin, Row, Col, Divider, Typography, Anchor, Menu } from "antd";
+import { Spin, Row, Col, Divider, Typography, Anchor, Menu, Button } from "antd";
 import styles from "./DetailPage.module.css";
-import { Header, Footer, ProductIntro, ProductComments } from "../../components";
-import { DatePicker, Space } from 'antd';
+import { ProductIntro, ProductComments } from "../../components";
+import { DatePicker } from 'antd';
 import { mockCommentsData } from "./mockComments";
-import { productDetailSlice, getProductDetail } from "../../redux/productDetail/slice";
+import { getProductDetail } from "../../redux/productDetail/slice";
 import { useSelector } from "../../redux/hooks";
 import { useDispatch } from "react-redux";
 import { MainLayout } from "../../layout";
-
+import { ShoppingCartOutlined} from "@ant-design/icons";
+import { addShoppingCartItem} from "../../redux/shoppingCart/slice";
 
 const { RangePicker } = DatePicker;
 interface MatchProps {
@@ -25,6 +25,8 @@ export const DetailPage: React.FC<RouteComponentProps<MatchProps>> = (props) => 
     const loading = useSelector((state) => state.productDetail.loading);
     const product = useSelector((state) => state.productDetail.data);
     const error = useSelector((state) => state.productDetail.error);
+    const jwt= useSelector(state=> state.user.token) as string;
+    const shoppingCartLoading = useSelector(state=>state.shoppingCart.loading);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -51,7 +53,21 @@ export const DetailPage: React.FC<RouteComponentProps<MatchProps>> = (props) => 
                             discount={product.price}
                             rating={product.rating}
                             pictures={product.touristRoutePictures.map((p) => p.url)} /></Col>
-                        <Col span={11}><RangePicker open={true} style={{ marginTop: 20 }} /></Col>
+                        <Col span={11}>
+                            <RangePicker open={true} style={{ marginTop: 20 }} />
+                            <Button
+                                style={{marginTop: 350, marginBottom: 30, marginLeft: 150,
+                                        display:"block"}}
+                                type="primary"
+                                loading={shoppingCartLoading}
+                                onClick={()=>{
+                                    dispatch(addShoppingCartItem({jwt,touristRouteId}))
+                                }}
+                            >
+                                <ShoppingCartOutlined/>
+                                Add to Shopping Cart
+                            </Button>
+                        </Col>
                     </Row>
                 </div>
                 {/* ANCHORS MENU COMP HERE */}
