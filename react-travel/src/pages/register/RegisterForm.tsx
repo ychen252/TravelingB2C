@@ -18,11 +18,10 @@ export const RegisterForm: React.FC = () => {
     } catch (err) {
       alert("Failed to register, try again");
     }
-    console.log("Success:", values);
   };
 
   const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   return (
